@@ -4,7 +4,11 @@ public class Spiller {
 
 	private String navn ="";
 	
-	public Spiller(){
-		
+	public Spiller(String a){
+		navn = a;
+	}
+	
+	public getNavn(){
+		return navn;
 	}
 }
