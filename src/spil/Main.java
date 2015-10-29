@@ -1,5 +1,10 @@
 package spil;
 import desktop_resources.GUI;
+
+import java.awt.Color;
+
+import desktop_codebehind.Car;
+import desktop_fields.*;
 import desktop_fields.Field;
 import desktop_fields.Shipping;
 import desktop_fields.Street;
@@ -8,18 +13,59 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		init();
-		Spiller spiller1 = new Spiller("Jens", 1111);
-		Spiller spiller2 = new Spiller("Jakob", 1112);
-		Konto Jens1111 = new Konto(1000);
-		Konto Jakob1112 = new Konto(1000);
+		Spiller spiller1 = new Spiller("Sherlock", 1111);
+		Spiller spiller2 = new Spiller("Watson", 1112);
+		Konto Sherlock1111 = new Konto(1000);
+		Konto Watson1112 = new Konto(1000);
 		Terning tern = new Terning(6);
+		Tur tur = new Tur();
+		Felt felt = new Felt();
+		
 		GUI.addPlayer(spiller1.getNavn(), 1000);
 		GUI.addPlayer(spiller2.getNavn(), 1000);
-		
-		tern.kast();
+		while(true){
+			if(tur.getCheck()==1)
+				spilloop(spiller1, tern, felt, Sherlock1111, tur);
+			else if(tur.getCheck()==2)
+				spilloop(spiller2, tern, felt, Watson1112, tur);
+		}
 	}
 
-	public static void init(){
+	public static void spilloop(Spiller player, Terning tern, Felt felt, Konto konto, Tur tur){	
+		if(GUI.getUserButtonPressed(player.getNavn() + "'s tur, tryk på knappen for at slå med terningerne", "Kast Terning").equals("Kast Terning")){
+			GUI.removeAllCars(player.getNavn());
+			GUI.setCar(tern.kast()-1, player.getNavn());
+			GUI.showMessage("" + felt.getFeltTekst((tern.getVærdi()-2)));
+			int feltværdi = felt.getFeltVærdi((tern.getVærdi()-2));
+			if(feltværdi > 0){
+				konto.deposit(feltværdi);
+				GUI.setBalance(player.getNavn(), konto.getBeholdning());
+				if(konto.getBeholdning() >= 3000){
+					GUI.showMessage(player.getNavn() + " won the game");
+					if(GUI.getUserButtonPressed("Want to play again?", "Yes", "No").equals("Yes")){
+						GUI.showMessage("Then open the application again");
+						System.exit(0);
+					}
+					else{
+						System.exit(0);
+					}
+						
+									
+				}
+			}
+			else if(feltværdi < 0){
+				konto.withdraw(-feltværdi);
+				GUI.setBalance(player.getNavn(), konto.getBeholdning());
+			}
+			
+			
+			if(tern.getVærdi()-2 != 8)
+				tur.skift();
+			}
+		}
+	
+	
+	public static void init(){ // initialiserer Gui'en
 		Field[] fields = new Field[11];
 		fields[0] = new Street.Builder().setTitle("Tower").build();
 		fields[1] = new Street.Builder().setTitle("Crater").build();
@@ -55,6 +101,6 @@ public class Main {
 		GUI.setSubText(9, "Income: -80");
 		GUI.setSubText(10, "Income: -50");
 		GUI.setSubText(11, "Income: +650");
-
 	}
-}
+	
+	}
