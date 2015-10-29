@@ -1,17 +1,10 @@
 package spil;
 import desktop_resources.GUI;
-
-import java.awt.Color;
-
-import desktop_codebehind.Car;
-import desktop_fields.*;
 import desktop_fields.Field;
-import desktop_fields.Shipping;
 import desktop_fields.Street;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		init();
 		Spiller spiller1 = new Spiller("Sherlock", 1111);
 		Spiller spiller2 = new Spiller("Watson", 1112);
@@ -32,7 +25,7 @@ public class Main {
 	}
 
 	public static void spilloop(Spiller player, Terning tern, Felt felt, Konto konto, Tur tur){	
-		if(GUI.getUserButtonPressed(player.getNavn() + "'s tur, tryk på knappen for at slå med terningerne", "Kast Terning").equals("Kast Terning")){
+		if(GUI.getUserButtonPressed(player.getNavn() + "'s turn, press the button to roll the dice", "Throw Dice").equals("Throw Dice")){
 			GUI.removeAllCars(player.getNavn());
 			GUI.setCar(tern.kast()-1, player.getNavn());
 			GUI.showMessage("" + felt.getFeltTekst((tern.getVærdi()-2)));

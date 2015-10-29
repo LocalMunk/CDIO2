@@ -1,7 +1,6 @@
 package spil;
-import java.util.Random;
 
-import desktop_resources.GUI;;
+import desktop_resources.GUI;
 
 public class Terning {
 
