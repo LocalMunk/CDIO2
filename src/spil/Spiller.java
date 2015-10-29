@@ -4,14 +4,18 @@ public class Spiller {
 
 	private String navn ="";
 	
-	private int kontonr;
+	private String kontonr;
 	
 	public Spiller(String a, int b){
 		navn = a;
-		kontonr = b;
+		kontonr = a + " " + b;
 	}
 	
-	public getNavn(){
+	public String getNavn(){
 		return navn;
+	}
+	
+	public String getKonto(){
+		return kontonr;
 	}
 }

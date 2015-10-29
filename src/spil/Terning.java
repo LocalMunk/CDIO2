@@ -1,5 +1,7 @@
 package spil;
-import Math.random;
+import java.util.Random;
+
+import desktop_resources.GUI;;
 
 public class Terning {
 
@@ -11,8 +13,9 @@ public class Terning {
 	
 	public int kast(){
 		int a, b;
-		a = (int)Math.random() * sider +1;
-		b = (int)Math.random() * sider +1;		
+		a = (int)(Math.random() * sider +1);
+		b = (int)(Math.random() * sider +1);		
+		GUI.setDice(a, b);
 		return a+b;
 	}
 }
