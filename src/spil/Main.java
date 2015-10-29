@@ -54,8 +54,13 @@ public class Main {
 				}
 			}
 			else if(feltværdi < 0){
-				konto.withdraw(-feltværdi);
-				GUI.setBalance(player.getNavn(), konto.getBeholdning());
+				if(feltværdi < konto.getBeholdning()){
+					konto.withdraw(-feltværdi);
+					GUI.setBalance(player.getNavn(), konto.getBeholdning());
+				}
+				else{
+					konto.withdraw(konto.getBeholdning());
+				}
 			}
 			
 			
