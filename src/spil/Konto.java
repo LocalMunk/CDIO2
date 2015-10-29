@@ -4,22 +4,36 @@ public class Konto {
 
 	private int beholdning;
 	
-	public Konto(){
-		beholdning = 1000;
+	public Konto(int a){
+		beholdning = a;
 	}
-	public void setBeholdning(int a){
-		beholdning += a;
-		if(beholdning < 0)
-			beholdning = 0;
-	}
-	
+		
 	public int getBeholdning(){
 		return beholdning;
 	}
 	
+	public void withdraw(int take){
+		if(take < beholdning && take > 0){
+			beholdning = beholdning - take;
+			System.out.println("Withdraw Successful");
+		}
+		else{
+			System.out.println("Withdraw failed");
+		}
+	}
+	
+	public void deposit(int give){
+		if(give > 0){
+			beholdning += give;
+			System.out.println("Deposit successful");
+		}
+		else{
+			System.out.println("Deposit failed");
+		}
+	}
 	
 	
-	public String toString(){
-		return(" har " + beholdning + " kroner");
+	public String toString(Spiller player){
+		return(player + " har " + beholdning + " kroner");
 	}
 }
