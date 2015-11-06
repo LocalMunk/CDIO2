@@ -29,7 +29,7 @@ public class Main {
 		if(GUI.getUserButtonPressed(player.getNavn() + string.getButtonPress(), string.getButtonPressAnswer()).equals(string.getButtonPressAnswer())){
 			GUI.removeAllCars(player.getNavn());
 			GUI.setCar(tern.kast()-1, player.getNavn());
-			GUI.showMessage("" + string.getFeltDesc((tern.getVærdi()-2)));
+			GUI.showMessage("" + string.getFeltDesc((tern.getVærdi()-1)));
 			int feltværdi = felt.getFeltVærdi((tern.getVærdi()-2), string);
 			if(feltværdi > 0){
 				konto.deposit(feltværdi);
